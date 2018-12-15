@@ -1,5 +1,7 @@
 # MERN-Kanban
 
+Project status: during development...
+
 ## Available Commands
 
 1. `npm run start` - starts the development server with hot reloading enabled
