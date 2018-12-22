@@ -4,7 +4,7 @@ mongoose.plugin(schema => { schema.options.usePushEach = true });
 
 const laneSchema = new Schema({
   name: { type: 'String', required: true },
-  notes: [{ type: Schema.ObjectId, ref: 'Note', required: true }],
+  notes: [{ type: Schema.ObjectId, ref: 'Note', required: true, default: [] }],
   id: { type: 'String', required: true, unique: true },
 });
 

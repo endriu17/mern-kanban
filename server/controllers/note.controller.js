@@ -22,7 +22,7 @@ export function addNote(req, res) {
     if (err) {
       res.status(500).send(err);
     }
-    Lane.findOne({ id: laneId })
+    Lane.findById({ id: laneId })
       .then(lane => {
         lane.notes.push(saved);
         return lane.save();
@@ -35,12 +35,12 @@ export function addNote(req, res) {
 
 export function deleteNote(req, res) {
   const noteId = req.params.noteId;
-  Note.findOne({ id: req.params.noteId }).exec((err, note) => {
+  Note.findById({ id: req.params.noteId }).exec((err, note) => {
     if (err) {
       res.status(500).send(err);
     }
 
-    Lane.findOne({ notes: note_id })
+    Lane.findById({ notes: note_id })
     .then(lane => {
       const updatedNotes = lane.notes.filter(note => note.id !== noteId);
       lane.update({ notes: updatedNotes }, err => {
@@ -59,7 +59,7 @@ export function deleteNote(req, res) {
 }
 
 export function editNote(req, res) {
-  Note.findOne({ id: req.params.noteId }).exec((err, note) => {
+  Note.findById({ id: req.params.noteId }).exec((err, note) => {
     if (err) {
       res.status(500).send(err);
     }

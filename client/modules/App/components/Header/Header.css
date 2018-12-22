@@ -2,14 +2,14 @@
   background: #eee url('../../header-bk.png') center;
   background-size: cover;
   border-bottom: 1px solid #ccc;
-}
-
-.content {
+  height: 10vh;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  max-width: 980px;
-  margin: auto;
-  padding: 64px 16px;
-  overflow: auto;
 }
 
 .site-title {
@@ -21,39 +21,6 @@
 .site-title a {
   text-decoration: none;
   color: #FFF;
-}
-
-.add-post-button {
-  display: inline-block;
-  color: #FFF;
-  background: #03A9F4;
-  padding: 8px 16px;
-  text-decoration: none;
-  border-radius: 1000px;
-  float: right;
-}
-
-.language-switcher {
-  background: rgba(0, 0, 0, 0.1);
-}
-
-.language-switcher ul {
-  list-style: none;
-  width: 980px;
-  margin: auto;
-  text-align: right;
-}
-
-.language-switcher li {
-  display: inline-block;
-  margin: 10px;
-  padding: 5px;
-  cursor: pointer;
-  color: #fff;
-}
-
-.language-switcher li:first-child {
-  color: rgba(255, 255, 255, 0.7);
 }
 
 .selected {

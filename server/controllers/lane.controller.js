@@ -14,8 +14,6 @@ export function addLane(req, res) {
 
   const newLane = new Lane(req.body);
 
-  newLane.notes = [];
-
   newLane.id = uuid();
   newLane.save((err, saved) => {
     if (err) {
@@ -35,13 +33,12 @@ export function getLanes(req, res) {
 }
 
 export function deleteLane(req, res) {
-  Lane.findOne({ id: req.params.laneId }).exec((err, lane) => {
+  Lane.findById({ id: req.params.laneId }).exec((err, lane) => {
     if (err) {
       res.status(500).send(err);
     }
 
-    const notes = lane.notes;
-    notes.forEach(note => {
+    lane.notes.forEach(note => {
       Note.findByIdAndRemove(note.id).exec(() => {
       });
     });
@@ -53,7 +50,7 @@ export function deleteLane(req, res) {
 }
 
 export function editLane(req, res) {
-  Lane.findOne({ id: req.params.laneId }).exec((err, lane) => {
+  Lane.findById({ id: req.params.laneId }).exec((err, lane) => {
     if (err) {
       res.status(500).send(err);
     }
