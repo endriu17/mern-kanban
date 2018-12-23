@@ -26,12 +26,28 @@ export function updateLane(lane) {
       lane,
     };
 }
+
+export function updateLaneRequest(lane) {
+  return dispatch => {
+    return callApi(`lanes/${lane.id}`, 'put', { name: lane.name, editing: lane.editing }).then(() => {
+      dispatch(updateLane(lane));
+    });
+  };
+}
   
 export function deleteLane(laneId) {
     return {
       type: DELETE_LANE,
-      laneId
+      laneId,
     };
+}
+
+export function deleteLaneRequest(laneId) {
+  return dispatch => {
+    return callApi(`lanes/${laneId}`, 'delete').then(() => {
+      dispatch(deleteLane(laneId));
+    });
+  };
 }
 
 export function editLane(laneId) {

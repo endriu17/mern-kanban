@@ -22,7 +22,7 @@ export function addNote(req, res) {
     if (err) {
       res.status(500).send(err);
     }
-    Lane.findById({ id: laneId })
+    Lane.findOne({ notes: note.laneId })
       .then(lane => {
         lane.notes.push(saved);
         return lane.save();
@@ -33,33 +33,8 @@ export function addNote(req, res) {
   });
 }
 
-export function deleteNote(req, res) {
-  const noteId = req.params.noteId;
-  Note.findById({ id: req.params.noteId }).exec((err, note) => {
-    if (err) {
-      res.status(500).send(err);
-    }
-
-    Lane.findById({ notes: note_id })
-    .then(lane => {
-      const updatedNotes = lane.notes.filter(note => note.id !== noteId);
-      lane.update({ notes: updatedNotes }, err => {
-        if (err) {
-          res.status(500).send(err);
-        }
-      });
-    })
-    .then(() => {
-      note.remove();
-    })
-    .then(() => {
-      res.status(200).end();
-    });
-  });
-}
-
 export function editNote(req, res) {
-  Note.findById({ id: req.params.noteId }).exec((err, note) => {
+  Note.findOne({ id: req.params.noteId }).exec((err, note) => {
     if (err) {
       res.status(500).send(err);
     }
@@ -70,6 +45,25 @@ export function editNote(req, res) {
         res.status(500).send(err);
       }
       res.json(saved);
+    });
+  });
+}
+
+export function deleteNote(req, res) {
+  const noteId = req.params.noteId;
+    Note.findOne({ id: noteId }).exec((err, note) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+
+    Lane.findOne({ notes: note.laneId }).exec((err, lane) => {
+      const updatedNotes = lane.notes.filter(note => note.id !== noteId);
+      lane.notes = updatedNotes;
+      lane.save(() => {
+        note.remove(() => {
+          res.status(200).end();
+        });
+      });
     });
   });
 }

@@ -1,4 +1,4 @@
-import { createLane, fetchLanes } from '../Lane/LaneActions';
+import { createLaneRequest, fetchLanes } from '../Lane/LaneActions';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -29,7 +29,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  createLane,
+  createLane: createLaneRequest,
+  fetchLanes,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Kanban);

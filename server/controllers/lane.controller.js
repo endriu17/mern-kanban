@@ -33,33 +33,26 @@ export function getLanes(req, res) {
 }
 
 export function deleteLane(req, res) {
-  Lane.findById({ id: req.params.laneId }).exec((err, lane) => {
+  const laneId = req.params.laneId;
+  Lane.findOne({ id: laneId }).exec((err, lane) => {
     if (err) {
       res.status(500).send(err);
     }
-
-    lane.notes.forEach(note => {
-      Note.findByIdAndRemove(note.id).exec(() => {
+        lane.remove(() => {
+        res.status(200).end();
       });
-    });
-
-    lane.remove(() => {
-      res.status(200).end();
-    });
   });
-}
+};
 
 export function editLane(req, res) {
-  Lane.findById({ id: req.params.laneId }).exec((err, lane) => {
+  if (!req.body.name) {
+    res.status(400).end();
+  }
+
+  Lane.findOneAndUpdate({ id: req.params.laneId }, { name: req.body.name }).exec(err => {
     if (err) {
       res.status(500).send(err);
     }
-    lane.name = req.body.name;
-    lane.save((err, saved) => {
-      if (err) {
-        res.status(500).send(err);
-      }
-      res.json(saved);
-    })
-  })
+    res.status(200).end();
+  });
 }

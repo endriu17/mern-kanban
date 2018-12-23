@@ -61,4 +61,5 @@ Edit.propTypes = {
   onValueClick: PropTypes.func,
   onDelete: PropTypes.func,
   editing: PropTypes.bool,
+  className: PropTypes.string,
 };
