@@ -11,22 +11,22 @@ export default class Edit extends Component {
     finishEdit = (e) => {
         const value = e.target.value;
 
-        if (this.props.onUpdate) {
-            this.props.onUpdate(value.trim());
-        }
+        this.props.onUpdate(value);
     }
 
     renderDelete = () => {
-        return <button className={styles.delete} onClick={this.props.onDelete}> × </button>;
+        return <span className={styles.Delete} onClick={this.props.onDelete}>x</span>;
     }
 
     renderValue = () => {
         const { value, onDelete, onValueClick } = this.props;
   
         return (
-        <div>
-            <span className={styles.value} onClick={onValueClick}>{value}</span>
-            {onDelete ? this.renderDelete() : null}
+        <div className={styles.NoteWrapper}>
+            <span className={styles.NoteTitle} onClick={onValueClick}>{value}</span>
+            <div className={styles.DeleteNote}>
+                {onDelete ? this.renderDelete() : null}
+            </div>
         </div>
         );
     }

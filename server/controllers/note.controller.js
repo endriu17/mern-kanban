@@ -34,36 +34,57 @@ export function addNote(req, res) {
 }
 
 export function editNote(req, res) {
-  Note.findOne({ id: req.params.noteId }).exec((err, note) => {
+  const noteId = req.params.noteId;
+  const newTask = req.body.task;
+  Note.findOne({ id: noteId }).exec((err, note) => {
     if (err) {
       res.status(500).send(err);
     }
 
-    note.task = req.body.task;
-    note.save((err, saved) => {
+    note.task = newTask;
+    note.save((err, noteSaved) => {
       if (err) {
-        res.status(500).send(err);
+        res.status(500).end();
       }
-      res.json(saved);
+      res.json(noteSaved);
+    })
+    .catch((err) => {
+      console.log('err');
+      console.log(err);
     });
   });
 }
 
+
 export function deleteNote(req, res) {
-  const noteId = req.params.noteId;
-    Note.findOne({ id: noteId }).exec((err, note) => {
+  
+    Note.findOne({ id: req.params.noteId  }).exec((err, note) => {
+
+      const noteId = req.params.noteId;
+
+      if (!note || !noteId || note === 'null') {
+        res.status(400).end();
+        return;
+      }
+
       if (err) {
         res.status(500).send(err);
       }
 
-    Lane.findOne({ notes: note.laneId }).exec((err, lane) => {
-      const updatedNotes = lane.notes.filter(note => note.id !== noteId);
-      lane.notes = updatedNotes;
-      lane.save(() => {
-        note.remove(() => {
-          res.status(200).end();
+      Lane.findOne({ notes: note._id })
+      .then(lane => {
+        const updatedNotes = lane.notes.filter(note => note.id !== noteId);
+        lane.update({ notes: updatedNotes }, error => {
+          if (error) {
+            res.status(500).send(error);
+          }
         });
+      })
+      .then(() => {
+        note.remove();
+      })
+      .then(() => {
+        res.status(200).end();
       });
-    });
   });
 }

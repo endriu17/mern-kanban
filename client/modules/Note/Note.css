@@ -1,6 +1,12 @@
 /* Note styles */
 .Note {
-    color: #000;
+    color: #fff;
+    background-color: #596a79;
+    border-radius: 7px;
     list-style-type: none;
     font-size: 14px;
+    width: 220px;
+    text-align: left;
+    margin: 10px auto;
+    padding: 10px;
 }

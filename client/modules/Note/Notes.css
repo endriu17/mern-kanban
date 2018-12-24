@@ -1,4 +1,8 @@
 .Notes {
     color: blue;
     font-size: 20px;
+    display: block;
+    margin: 0 auto;
+    min-height: 40vh;
+    padding: 10px 0;
 }
