@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styles from './Note.css';
 import PropTypes from 'prop-types';
 

@@ -22,7 +22,7 @@ export function addNote(req, res) {
     if (err) {
       res.status(500).send(err);
     }
-    Lane.findOne({ notes: note.laneId })
+    Lane.findOne({ id: laneId })
       .then(lane => {
         lane.notes.push(saved);
         return lane.save();
