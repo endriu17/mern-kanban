@@ -1,6 +1,6 @@
 /* Lane styles */
 .Lanes {
-    min-height: 20%;
+    min-height: 30%;
     margin: 0;
     display: block;
     padding: 20px;
@@ -15,6 +15,7 @@
     text-align: right;
     min-width: 250px;
     background-image: url(../App/header-bk.png);
+
 }
 
 .LaneAddNote button {
@@ -22,7 +23,8 @@
     font-size: 16px;
     font-weight: bold;
     padding: 5px;
-    border: none;
+    border: 1px solid #fff;
+    border-radius: 2px;
     background-color: #3f79bd;
 }
 
@@ -32,7 +34,9 @@
 
 .LaneAddNote button:hover, .LaneDelete span:hover {
     transform: scale(1.1);
-	transition: 0.5s;
+    transition: 0.5s;
+    cursor: pointer;
+    color: #fff;
 }
 
 .LaneDelete span {
@@ -51,11 +55,12 @@
 }
 
 .LaneHeader .LaneName {
-    text-align: center;
     font-size: 24px;
     padding: 0 5px;
     width: 90%;
     margin-top: 0;
+    position: relative;
+    left: 5px;
 }
 
 .LaneHeader {
