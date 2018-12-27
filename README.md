@@ -2,7 +2,7 @@
 
 Project status: during development...
 
-https://endriu17.github.io/mern-kanban/.
+https://endriu17.github.io/mern-kanban/
 
 ## Available Commands
 
