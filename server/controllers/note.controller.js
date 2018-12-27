@@ -2,10 +2,6 @@ import Lane from '../models/lane';
 import Note from '../models/note';
 import uuid from 'uuid';
 
-export function getSomething(req, res) {
-  return res.status(200).end();
-}
-
 export function addNote(req, res) {
   const { note, laneId } = req.body;
 
@@ -33,6 +29,37 @@ export function addNote(req, res) {
   });
 }
 
+export function deleteNote(req, res) {
+  Note.findOne({ id: req.params.noteId }).exec((err, note) => {
+    const noteId = req.params.noteId;
+
+    if (!note || !noteId || note === 'null') {
+      res.status(400).end();
+      return;
+    }
+
+    if (err) {
+      res.status(500).send(err);
+    }
+
+    Lane.findOne({ notes: note._id })
+      .then(lane => {
+        const updatedNotes = lane.notes.filter(note => note.id !== noteId);
+        lane.update({ notes: updatedNotes }, error => {
+          if (error) {
+            res.status(500).send(error);
+          }
+        });
+      })
+      .then(() => {
+        note.remove();
+      })
+      .then(() => {
+        res.status(200).end();
+      });
+  });
+}
+
 export function editNote(req, res) {
   const noteId = req.params.noteId;
   const newTask = req.body.task;
@@ -52,39 +79,5 @@ export function editNote(req, res) {
       console.log('err');
       console.log(err);
     });
-  });
-}
-
-
-export function deleteNote(req, res) {
-  
-    Note.findOne({ id: req.params.noteId  }).exec((err, note) => {
-
-      const noteId = req.params.noteId;
-
-      if (!note || !noteId || note === 'null') {
-        res.status(400).end();
-        return;
-      }
-
-      if (err) {
-        res.status(500).send(err);
-      }
-
-      Lane.findOne({ notes: note._id })
-      .then(lane => {
-        const updatedNotes = lane.notes.filter(note => note.id !== noteId);
-        lane.update({ notes: updatedNotes }, error => {
-          if (error) {
-            res.status(500).send(error);
-          }
-        });
-      })
-      .then(() => {
-        note.remove();
-      })
-      .then(() => {
-        res.status(200).end();
-      });
   });
 }

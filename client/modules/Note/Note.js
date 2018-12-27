@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styles from './Note.css';
 import PropTypes from 'prop-types';
 import {DragSource, DropTarget} from 'react-dnd';
@@ -46,25 +46,25 @@ const noteSource = {
   },
   isDragging(props, monitor) {
     return props.id === monitor.getItem().id;
-  }
+  },
 };
 
 const noteTarget = {
   hover(targetProps, monitor) {
     const sourceProps = monitor.getItem();
 
-    if (targetProps.id !== sourceProps.id) {
+    if (targetProps.id !== sourceProps.id && targetProps.laneId === sourceProps.laneId) {
       targetProps.moveWithinLane(targetProps.laneId, targetProps.id, sourceProps.id);
     }
-  }
+  },
 };
 
 export default compose(
   DragSource(ItemTypes.NOTE, noteSource, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging()
+    isDragging: monitor.isDragging(),
   })),
   DropTarget(ItemTypes.NOTE, noteTarget, (connect) => ({
-    connectDropTarget: connect.dropTarget()
+    connectDropTarget: connect.dropTarget(),
   }))
 )(Note);

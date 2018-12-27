@@ -17,7 +17,7 @@ const Kanban = (props) => (
         name: 'New lane',
       })}
     >Add lane</button>
-    <Lanes lanes={props.lanes} />
+    <Lanes className="KanbanLanes" lanes={props.lanes} />
   </div>
 );
 

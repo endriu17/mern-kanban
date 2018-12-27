@@ -9,12 +9,12 @@ const Notes = ({ notes, laneId, editNote, updateNote, deleteNote, moveWithinLane
   return (
   <ul className={styles.Notes}>{notes.map((note) =>
       <Note 
-        id={note.id} 
-        key={note.id} 
-        editing={note.editing} 
+        id={note.id}
+        key={note.id}
+        editing={note.editing}
         laneId={laneId}
-        moveWithinLane={moveWithinLane}
         task={note.task}
+        moveWithinLane={moveWithinLane}
         _id={note._id}
       >
         <Edit

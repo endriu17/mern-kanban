@@ -2,7 +2,6 @@
 .Lanes {
     min-height: 30%;
     margin: 0;
-    display: block;
     padding: 20px;
     display: flex;
     max-width: 25%;
@@ -25,6 +24,9 @@
     border: 1px solid #fff;
     border-radius: 2px;
     background-color: #3f79bd;
+    margin: 10px 0;
+    -webkit-box-shadow: 1px 1px 5px  #2d3a46;
+    box-shadow: 1px 1px 5px  #2d3a46;
 }
 
 .LaneAddNote {
@@ -32,7 +34,7 @@
 }
 
 .LaneAddNote button:hover, .LaneDelete span:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     transition: 0.5s;
     cursor: pointer;
     color: #fff;
