@@ -1,8 +1,6 @@
 # MERN-Kanban
 
-Project status: during development...
-
-https://endriu17.github.io/mern-kanban/
+Project status: waiting for deploy....
 
 ## Available Commands
 
