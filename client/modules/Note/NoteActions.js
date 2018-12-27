@@ -49,7 +49,7 @@ export function createNote(note, laneId) {
   
   export function deleteNoteRequest(noteId, laneId) {
     return (dispatch) => {
-      return callApi(`notes/${noteId}`, 'delete', { laneId }).then(() => {
+      return callApi(`notes/${noteId}`, 'delete').then(() => {
         dispatch(deleteNote(noteId, laneId));
       });
     };
