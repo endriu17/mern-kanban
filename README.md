@@ -2,6 +2,8 @@
 
 Project status: during development...
 
+https://endriu17.github.io/mern-kanban/.
+
 ## Available Commands
 
 1. `npm run start` - starts the development server with hot reloading enabled
