@@ -61,14 +61,14 @@ export function deleteNote(req, res) {
 }
 
 export function editNote(req, res) {
-  const noteId = req.params.noteId;
-  const newTask = req.body.task;
-  Note.findOne({ id: noteId }).exec((err, note) => {
+  // const noteId = req.params.noteId;
+  // const newTask = req.body.task;
+  Note.findOne({ id: req.params.noteId }).exec((err, note) => {
     if (err) {
       res.status(500).send(err);
     }
 
-    note.task = newTask;
+    note.task = req.body.task;
     note.save((err, noteSaved) => {
       if (err) {
         res.status(500).end();
