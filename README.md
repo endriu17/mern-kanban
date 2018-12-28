@@ -1,6 +1,6 @@
 # MERN-Kanban
 
-Project status: during development...
+Project status: waiting for deploy....
 
 ## Available Commands
 
