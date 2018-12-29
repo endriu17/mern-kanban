@@ -11,6 +11,8 @@ module.exports = {
   devtool: 'hidden-source-map',
 
   entry: {
+    entry: ['babel-polyfill', 
+    __dirname + "/client/index.js"] ,
     app: [
       './client/index.js',
     ],
