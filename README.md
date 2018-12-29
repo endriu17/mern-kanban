@@ -1,6 +1,6 @@
 # MERN-Kanban
 
-Project status: waiting for deploy....
+Preject preview: [here](https://fierce-ridge-14465.herokuapp.com/) 
 
 ## Available Commands
 
